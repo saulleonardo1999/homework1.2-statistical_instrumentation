@@ -17,7 +17,7 @@ public class Main {
         mensList.add(new Mensuration(129.50F, 9, "4:00:00"));
         mensList.add(new Mensuration(128.00F, 10, "4:30:00"));
 
-        StaticalMethods statical = new StaticalMethods(mensList, realVolts);
+        StaticMethods statical = new StaticMethods(mensList, realVolts);
 
         System.out.println("Arithmetic Average: " + statical.arithmeticAverage() + " volts");
         System.out.println("\nErrors: ");

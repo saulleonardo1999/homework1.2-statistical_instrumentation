@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.*;
 
-public class StaticalMethods {
+public class StaticMethods {
 
     public List<Mensuration> mensurationList;
     public float realVolts;
     public int n;
 
-    public StaticalMethods(List<Mensuration> mensurationList, float realVolts) {
+    public StaticMethods(List<Mensuration> mensurationList, float realVolts) {
         this.mensurationList = mensurationList;
         this.realVolts = realVolts;
         this.n = this.mensurationList.toArray().length;
