@@ -25,5 +25,14 @@ public class Mensuration {
     public float sortBy(Mensuration a) {
         return this.getVolts() > a.getVolts() ? 1 : -1;
     }
+
+    @Override
+    public String toString() {
+        return "Mensuration{" +
+                "volts=" + volts +
+                ", order=" + order +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }
 

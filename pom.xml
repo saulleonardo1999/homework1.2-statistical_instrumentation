@@ -28,7 +28,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>StatisticsUI</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

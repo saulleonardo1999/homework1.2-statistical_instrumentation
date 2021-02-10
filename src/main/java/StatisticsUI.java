@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,16 +50,41 @@ public final class StatisticsUI extends javax.swing.JFrame {
      public void fillMatrix(Scanner scn){
         int matrixRows = 0;
         String line;
+
+         float realVolts = 127.00F;
+
+         List<Mensuration> mensList = new ArrayList<Mensuration>();
         while(scn.hasNextLine()){
             line = scn.nextLine();
             String[] divideEqual = line.split(" ");
             
             //
-            System.arraycopy(divideEqual, 0, this.tableValues[matrixRows], 0, 3);
+            //System.arraycopy(divideEqual, 0, this.tableValues[matrixRows], 0, 3);
+            //System.out.println(divideEqual[0] + " - " + divideEqual[1] + " - " + divideEqual[2]);
+            mensList.add(new Mensuration(Float.parseFloat(divideEqual[2]), Integer.parseInt(divideEqual[0]), divideEqual[0]));
             //
             
             matrixRows++;
         }
+
+        for(Mensuration mensuration: mensList) {
+            System.out.println(mensuration);
+        }
+
+         StaticMethods statical = new StaticMethods(mensList, realVolts);
+
+         System.out.println("Arithmetic Average: " + statical.arithmeticAverage() + " volts");
+         System.out.println("\nErrors: ");
+         List<Error> absoluteErrors = statical.getErrors();
+         for (Error error: absoluteErrors)
+             System.out.println("Hour: " + error.hour + "\nAE: " + error.getAbsolute() + " volts" + "\nRE: " + error.getRelative() + "%");
+
+         System.out.println("\nMedian: " + statical.median() + " volts");
+
+         Frequency moreRepeated = statical.getMoreRepeated();
+         System.out.println("More Repeated: " + moreRepeated.getEl() + " volts, Frequency: " + moreRepeated.getFrequency());
+
+
      }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,10 +115,10 @@ public final class StatisticsUI extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
-        jLabel1.setText("Tarea 1.2 Programa de calculos estáditisticos");
+        jLabel1.setText("Tarea 1.2 Programa de calculos estï¿½ditisticos");
 
         jLabel2.setFont(new java.awt.Font("MS Gothic", 2, 12)); // NOI18N
-        jLabel2.setText("Instrumentación Electrónica: Equipo 1");
+        jLabel2.setText("Instrumentaciï¿½n Electrï¿½nica: Equipo 1");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
