@@ -1,5 +1,7 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,11 +13,20 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
+
 public final class StatisticsUI extends javax.swing.JFrame {
+
     File file;
     String [][] tableValues;
     public StatisticsUI() {
@@ -47,7 +58,7 @@ public final class StatisticsUI extends javax.swing.JFrame {
             System.err.print(e);
         }
     }
-     public void fillMatrix(Scanner scn){
+     public void fillMatrix(Scanner scn) throws FileNotFoundException, MalformedURLException {
         int matrixRows = 0;
         String line;
 
@@ -86,6 +97,11 @@ public final class StatisticsUI extends javax.swing.JFrame {
 
 
      }
+
+     public static void createPDF ()
+     {
+
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,6 +122,7 @@ public final class StatisticsUI extends javax.swing.JFrame {
         inputLabelPath = new javax.swing.JLabel();
         outputLabelPath = new javax.swing.JLabel();
         convertButton = new javax.swing.JButton();
+        pdfButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculador Estadistico ");
@@ -154,6 +171,14 @@ public final class StatisticsUI extends javax.swing.JFrame {
         convertButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         convertButton.setText("Calcular");
         convertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                convertButtonActionPerformed(evt);
+            }
+        });
+
+        pdfButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        pdfButton.setText("PDF CARNAL");
+        pdfButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 convertButtonActionPerformed(evt);
             }
@@ -293,7 +318,7 @@ public final class StatisticsUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws FileNotFoundException, MalformedURLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -336,6 +361,7 @@ public final class StatisticsUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel outputLabelPath;
     private javax.swing.JTextField outputRoute;
+    private javax.swing.JButton pdfButton;
     // End of variables declaration//GEN-END:variables                   
    
 }
