@@ -1,5 +1,16 @@
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfTextArray;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.*;
+
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.*;
+import java.util.List;
 
 public class StaticMethods {
 
@@ -87,14 +98,47 @@ public class StaticMethods {
             System.out.println("Frequency: " + frequency.el + " ,it was repeated " + frequency.frequency + " times");
         }
 
+
         return frequencies;
     }
 
-    public Frequency getMoreRepeated() {
+    public Frequency getMoreRepeated() throws FileNotFoundException, MalformedURLException {
         List<Frequency> frequencies = this.getFrequencies();
         frequencies.sort((m1, m2) -> (int) m1.sortBy(m2));
 
+        float columns []  = {100f, 200f};
+        Table table = new Table(columns);
+        table.addCell(new Cell().add("Frequencia"));
+        table.addCell(new Cell().add("Repeticiones"));
+
+
+        String imgPath = "images//uaa.png";
+        ImageData imgData = ImageDataFactory.create(imgPath);
+        Image photo = new Image(imgData);
+
+
+        String path = "/home/rega/Escritorio/isc/8/electro/homework1.2-statistical_instrumentation/pdfs/Reporte.pdf";
+        String text = "A continuacion se presentan los cálculos resultantes de los datos recabados del archivo ingresado.";
+        Paragraph paragraph = new Paragraph(text);
+        PdfWriter writer = new PdfWriter(path);
+
+        PdfDocument doc = new PdfDocument(writer);
+        doc.addNewPage();
+
+        com.itextpdf.layout.Document file = new Document(doc);
+        file.add(photo);
+        file.add(paragraph);
+        file.add(table);
+
+        file.close();
+
         return frequencies.get(0);
+    }
+
+    public static void createPDF(List<Frequency> list)
+    {
+//        Document doc = new Document();
+
     }
 
 }

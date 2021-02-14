@@ -1,3 +1,5 @@
+import com.itextpdf.layout.element.IBlockElement;
+
 public class Frequency {
     public float el;
     public int frequency;

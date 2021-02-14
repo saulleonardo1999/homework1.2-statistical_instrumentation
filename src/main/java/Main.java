@@ -1,8 +1,10 @@
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, MalformedURLException {
         float realVolts = 127.00F;
 
         List<Mensuration> mensList = new ArrayList<Mensuration>();
