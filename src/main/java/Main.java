@@ -21,15 +21,18 @@ public class Main {
 
         StaticMethods statical = new StaticMethods(mensList, realVolts);
 
+
         System.out.println("Arithmetic Average: " + statical.arithmeticAverage() + " volts");
         System.out.println("\nErrors: ");
         List<Error> absoluteErrors = statical.getErrors();
+
         for (Error error: absoluteErrors)
             System.out.println("Hour: " + error.hour + "\nAE: " + error.getAbsolute() + " volts" + "\nRE: " + error.getRelative() + "%");
 
         System.out.println("\nMedian: " + statical.median() + " volts");
 
         Frequency moreRepeated = statical.getMoreRepeated();
+
         System.out.println("More Repeated: " + moreRepeated.getEl() + " volts, Frequency: " + moreRepeated.getFrequency());
     }
 }
