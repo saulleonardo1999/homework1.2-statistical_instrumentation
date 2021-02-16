@@ -74,16 +74,40 @@ public class StaticMethods {
             return sortedList.get((int) Math.ceil((n / 2))).getVolts();
         }
     }
-    public double mean_deviation()
+    public double mean_desviation()
     {
-        double var = this.median();
+        double var = this.arithmeticAverage();
         double suma= 0;
+        double [] averages_desviation;
+        averages_desviation = this.average_desviation();
         for (int i = 0; i < this.mensurationList.toArray().length; i++) {
-             suma =+ this.mensurationList.get(i).getVolts() - var;
+             suma =+ averages_desviation[i];
         }
         return suma/n;
     }
-    
+    public double semi_interquartile()
+    {
+        List<Mensuration> sortedList = new ArrayList<Mensuration>(this.mensurationList);
+        //SortList
+        sortedList.sort((m1, m2) -> (int) m1.sortBy(m2));
+        
+        int q3, q1;
+        
+        q1 = (n + 1)/4;
+        q3 = 3(n+1)/4;
+        
+        return (sortedList.get(q3).getVolts() - sortedList.get(q1).getVolts())/2;
+    }
+    public double[] average_desviation()
+    {
+        double [] array;
+        array = new double[this.mensurationList.toArray().length];
+        for (int i = 0; i < this.mensurationList.toArray().length; i++) {
+             array[i] = this.mensurationList.get(i).getVolts() - this.arithmeticAverage();
+        }
+        
+        return array;
+    }
     public double variance()
     {
         double var = this.median();
