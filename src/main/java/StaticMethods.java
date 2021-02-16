@@ -117,7 +117,7 @@ public class StaticMethods {
         Image photo = new Image(imgData);
 
 
-        String path = "/homework1.2-statistical_instrumentation/pdfs/Reporte.pdf";
+        String path = "/home/cesar/Desktop/Reporte.pdf";
         String text = "A continuacion se presentan los cálculos resultantes de los datos recabados del archivo ingresado.";
         Paragraph paragraph = new Paragraph(text);
         PdfWriter writer = new PdfWriter(path);

@@ -26,7 +26,7 @@ import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 
 public final class StatisticsUI extends javax.swing.JFrame {
-
+    String OutputRuta;
     File file;
     String [][] tableValues;
     public StatisticsUI() {
@@ -92,7 +92,7 @@ public final class StatisticsUI extends javax.swing.JFrame {
              System.out.println("Hour: " + error.hour + "\nAE: " + error.getAbsolute() + " volts" + "\nRE: " + error.getRelative() + "%");
 
          System.out.println("\nMedian: " + statical.median() + " volts");
-         Graph.writeGraphics(statical.getFrequencies(),statical.getErrors());
+         Graph.writeGraphics(statical.getFrequencies(),statical.getErrors(),this.OutputRuta);
          Frequency moreRepeated = statical.getMoreRepeated();
          System.out.println("More Repeated: " + moreRepeated.getEl() + " volts, Frequency: " + moreRepeated.getFrequency());
 
@@ -288,7 +288,7 @@ public final class StatisticsUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_getRoutesButtonActionPerformed                                               
-    private void selectOutputRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectOutputRouteActionPerformed                                                     
+    private void selectOutputRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectOutputRouteActionPerformed
             JFileChooser chooser;
             chooser = new JFileChooser(); 
             chooser.setCurrentDirectory(new java.io.File("."));
@@ -301,12 +301,11 @@ public final class StatisticsUI extends javax.swing.JFrame {
                 if(outputFile != null && outputFile.exists()){
 
                     outputRoute.setText(outputFile.getAbsolutePath());
+                    this.OutputRuta = outputFile.getAbsolutePath();
                 }
             }
-        
-        
-    }//GEN-LAST:event_selectOutputRouteActionPerformed                                                    
 
+    }//GEN-LAST:event_selectOutputRouteActionPerformed
     private void convertButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         if(file == null){
             JOptionPane.showMessageDialog(null, "Primero selecciona un archivo de entrada", "Error", JOptionPane.WARNING_MESSAGE);
