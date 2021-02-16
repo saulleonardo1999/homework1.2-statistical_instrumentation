@@ -18,8 +18,9 @@ public class Graphics {
     public Graphics(){
 
     }
-    public void writeGraphics(List<Frequency> frequencies, List<Error> absoluteErrors) {
-        errorGraphic(absoluteErrors);
+    public void writeGraphics(List<Frequency> frequencies, List<Error> absoluteErrors, String Route) {
+        System.out.println(Route);
+        errorGraphic(absoluteErrors,Route);
         DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
 
         for (Frequency frequency: frequencies) {
@@ -30,7 +31,7 @@ public class Graphics {
         JFreeChart barChart = ChartFactory.createBarChart("Histograma", "Volts", "Frecuencia",
                 dataset, PlotOrientation.HORIZONTAL, true, true, false);
         try {
-            ChartUtils.saveChartAsPNG(new File("/home/cesar/Desktop/histogram.png"), barChart, 800, 800);
+            ChartUtils.saveChartAsPNG(new File(Route+"/histograma.png"), barChart, 800, 800);
         }catch(IOException ex){}
         ChartPanel Panel = new ChartPanel(barChart);
         JFrame Ventana = new JFrame("JFreeChart");
@@ -39,8 +40,8 @@ public class Graphics {
         Ventana.setVisible(true);
         Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    public void errorGraphic (List<Error> absoluteErrors){
-        System.out.println("HOLAAA DESDE ERROR");
+    public void errorGraphic (List<Error> absoluteErrors,String Route){
+        System.out.println(Route);
         final XYSeries serie1 = new XYSeries("Absolute Error");
         final XYSeries serie2 = new XYSeries("Relative Error");
         for (Error error: absoluteErrors){
@@ -63,7 +64,7 @@ public class Graphics {
                 false
         );
         try {
-            ChartUtils.saveChartAsPNG(new File("/home/cesar/Desktop/error.png"), chart, 800, 800);
+            ChartUtils.saveChartAsPNG(new File(Route+"/Error.png"), chart, 800, 800);
         }catch(IOException ex){}
 
         ChartPanel Panel = new ChartPanel(chart);
@@ -74,4 +75,5 @@ public class Graphics {
         Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
+
 }
