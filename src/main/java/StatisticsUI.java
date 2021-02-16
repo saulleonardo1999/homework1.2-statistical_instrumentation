@@ -95,7 +95,8 @@ public final class StatisticsUI extends javax.swing.JFrame {
          System.out.println("\nMedian: " + statical.median() + " volts");
          Graph.writeGraphics(statical.getFrequencies(),statical.getErrors(),this.OutputRuta);
          pdf.createPDF(statical.getFrequencies(), statical.getErrors(), this.OutputRuta
-                 , statical.median(), statical.getMoreRepeated());
+                 , statical.median(), statical.getMoreRepeated(), statical.mean_desviation(), statical.semi_interquartile(), statical.variance(), statical.standar_deviation(), statical.coefficient_of_variation()
+                 , statical.range(), statical.arithmeticAverage(), statical.average_desviation() );
 
          Frequency moreRepeated = statical.getMoreRepeated();
          System.out.println("More Repeated: " + moreRepeated.getEl() + " volts, Frequency: " + moreRepeated.getFrequency());
