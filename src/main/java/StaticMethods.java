@@ -74,6 +74,43 @@ public class StaticMethods {
             return sortedList.get((int) Math.ceil((n / 2))).getVolts();
         }
     }
+    public double mean_deviation()
+    {
+        double var = this.median();
+        double suma= 0;
+        for (int i = 0; i < this.mensurationList.toArray().length; i++) {
+             suma =+ this.mensurationList.get(i).getVolts() - var;
+        }
+        return suma/n;
+    }
+    
+    public double variance()
+    {
+        double var = this.median();
+        double suma= 0;
+        for (int i = 0; i < this.mensurationList.toArray().length; i++) {
+             suma =+ Math.pow(this.mensurationList.get(i).getVolts() - var, 2);
+        }
+        return suma/n;
+    }
+    
+    public double standar_deviation()
+    {
+        return Math.sqrt(this.variance());
+    }
+    
+    public double coefficient_of_variation()
+    {
+        return (this.standar_deviation() / this.median());
+    }
+    public double range()
+    {
+         List<Mensuration> sortedList = new ArrayList<Mensuration>(this.mensurationList);
+        //SortList
+        sortedList.sort((m1, m2) -> (int) m1.sortBy(m2));
+        
+        return  sortedList.get((int) Math.ceil((n))).getVolts() - sortedList.get((int) Math.ceil((1))).getVolts() ;
+    }
 
     public List<Frequency> getFrequencies() {
         List<Frequency> frequencies = new ArrayList<Frequency>();
