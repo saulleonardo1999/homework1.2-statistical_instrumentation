@@ -17,6 +17,11 @@ public class Frequency {
         return el;
     }
 
+    @Override
+    public String toString() {
+        return   el + "        " + frequency ;
+    }
+
     public int getFrequency() {
         return frequency;
     }
