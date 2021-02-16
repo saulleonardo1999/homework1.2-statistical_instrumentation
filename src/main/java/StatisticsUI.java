@@ -84,6 +84,7 @@ public final class StatisticsUI extends javax.swing.JFrame {
 
          StaticMethods statical = new StaticMethods(mensList, realVolts);
          Graphics Graph = new Graphics();
+         Pdf pdf = new Pdf();
 
          System.out.println("Arithmetic Average: " + statical.arithmeticAverage() + " volts");
          System.out.println("\nErrors: ");
@@ -93,6 +94,9 @@ public final class StatisticsUI extends javax.swing.JFrame {
 
          System.out.println("\nMedian: " + statical.median() + " volts");
          Graph.writeGraphics(statical.getFrequencies(),statical.getErrors(),this.OutputRuta);
+         pdf.createPDF(statical.getFrequencies(), statical.getErrors(), this.OutputRuta
+                 , statical.median(), statical.getMoreRepeated());
+
          Frequency moreRepeated = statical.getMoreRepeated();
          System.out.println("More Repeated: " + moreRepeated.getEl() + " volts, Frequency: " + moreRepeated.getFrequency());
 
