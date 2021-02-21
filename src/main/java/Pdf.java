@@ -64,9 +64,9 @@ public class Pdf {
         table.addCell(new Cell().add("Frequencia"));
         table.addCell(new Cell().add("Repeticiones"));
 
-        //String imgPath = "src/main/resources/images/uaa.png";
-        //ImageData imgData = ImageDataFactory.create(imgPath);
-        //Image photo = new Image(imgData);
+        String imgPath = "src/main/resources/images/uaa.png";
+        ImageData imgData = ImageDataFactory.create(imgPath);
+        Image photo = new Image(imgData);
 
         String ErrPhotoPath = Route + "/Error.png";
         String HistPhotoPath = Route + "/histograma.png";
@@ -96,7 +96,7 @@ public class Pdf {
 
         Document file = new Document(doc);
 
-        //file.add(photo);
+        file.add(photo);
         file.add(new Paragraph(new String("Reporte de calculos estadisticos")));
         file.add(intePara);
 
